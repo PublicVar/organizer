@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use PublicVar\OrganizerFile\Console\Command\SerieOrganizerCommand;
+use PublicVar\OrganizerFile\Manipulator\SymfonySystemManipulator;
+use PublicVar\OrganizerFile\Subscriber\OrganizerEventSubscriber;
+use Symfony\Component\Console\Application;
+use Symfony\Component\EventDispatcher\EventDispatcher;
+
+$eventDispatcher = new EventDispatcher();
+$organizerEventSubscriber = new OrganizerEventSubscriber();
+
+$systemManipulator = new SymfonySystemManipulator();
+$systemManipulator->setEventDispatcher($eventDispatcher);
+
+$organizerEventSubscriber->setSystemManipulator($systemManipulator);
+$eventDispatcher->addSubscriber($organizerEventSubscriber);
+$application = new Application();
+$application->add(new SerieOrganizerCommand('series',$eventDispatcher));
+
+$application->run();
