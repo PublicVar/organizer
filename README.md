@@ -17,6 +17,9 @@ $ mv organizer/ /usr/local/bin/
 # How to use 
 
 ## Organize the series
+Generally a serie files is named like this : **Serie.Name.S01.E05.Some.Random.Info.mkv**
+So the App is based on this pattern to identify the serie name, the season number and episode number.
+
 
 Keep in mind that is still under developements. For the moment you can only use it through the console.
 
