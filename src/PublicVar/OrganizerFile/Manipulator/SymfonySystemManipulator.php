@@ -48,16 +48,20 @@ class SymfonySystemManipulator implements SystemManipulator
 
     public function moveFile($origine, $destination)
     {
-        $this->display('move file > ' . $origine,'comment');
+        
         //transform space in "\ " for the mv command
         $origine = str_replace(' ', '\ ', $origine);
+        //transform () in "\(\)" for the mv command
+        $origine = str_replace('(', '\(', $origine);
+        $origine = str_replace(')', '\)', $origine);
         $destination = str_replace(' ', '\ ', $destination);
+        $this->display('move file > ' . $origine,'comment');
 
         $execMoveFile = "mv -f $origine $destination";
         $process = new Process($execMoveFile, null, null, null, null);
         $process->run(function ($type, $buffer) {
   
-            $this->getOutput()->writeln('move file');
+            $this->display('move file');
             if ('err' === $type) {
                 $this->display('move file error > ' . $buffer);
             }
