@@ -27,16 +27,33 @@ class Serie
         return $cleanName;
     }
     
-    public function getSeason()
+    public function getSeason($removeS=false)
     {
         preg_match("/s[0-9]{2}\.* *e[0-9]{2}/i", $this->file,$seasonAndEpisode);
         if(!empty($seasonAndEpisode[0])){
             preg_match("/s[0-9]{2}/i", $seasonAndEpisode[0],$season);
+            if($removeS){
+                $season[0] = substr($season[0],1);
+            }
             return trim(strtoupper($season[0]));
             
         }
         return "";
     }
+    
+    public function getEpisode($removeE=false){
+        preg_match("/s[0-9]{2}\.* *e[0-9]{2}/i", $this->file,$seasonAndEpisode);
+        if(!empty($seasonAndEpisode[0])){
+            preg_match("/e[0-9]{2}/i", $seasonAndEpisode[0],$episode);
+            if($removeE){
+                $episode[0] = substr($episode[0],1);
+            }
+            return trim(strtoupper($episode[0]));
+            
+        }
+        return ""; 
+    }
+    
     public function getFileName()
     {
         return $this->file;

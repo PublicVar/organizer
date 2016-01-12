@@ -25,4 +25,11 @@ class SerieTest extends \PHPUnit_Framework_TestCase
         $expected = 'S05';
         $this->assertEquals($expected, $season);
     }
+    
+    public function testGetEpisode(){
+        $serie = new Serie('Game.Of.Thrones.S05E07.VO.STFR.720p.mkv');
+        $episode = $serie->getEpisode();
+        $expected = 'E07';
+        $this->assertEquals($expected, $episode);
+    }
 }

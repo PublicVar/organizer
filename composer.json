@@ -3,7 +3,8 @@
         "symfony/console": "^2.7",
         "symfony/finder": "^2.7",
         "symfony/process": "^2.7",
-        "symfony/event-dispatcher": "^2.7"
+        "symfony/event-dispatcher": "^2.7",
+        "symfony/filesystem": "^3.0"
     },
     "autoload": {
       "psr-4": {

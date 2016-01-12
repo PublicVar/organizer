@@ -4,6 +4,7 @@
 require_once 'vendor/autoload.php';
 
 use PublicVar\OrganizerFile\Console\Command\SerieOrganizerCommand;
+use PublicVar\FilesSummary\Console\Command\LastEpisodeViewedCommand;
 use PublicVar\OrganizerFile\Manipulator\SymfonySystemManipulator;
 use PublicVar\OrganizerFile\Subscriber\OrganizerEventSubscriber;
 use Symfony\Component\Console\Application;
@@ -19,5 +20,6 @@ $organizerEventSubscriber->setSystemManipulator($systemManipulator);
 $eventDispatcher->addSubscriber($organizerEventSubscriber);
 $application = new Application();
 $application->add(new SerieOrganizerCommand('series',$eventDispatcher));
+$application->add(new LastEpisodeViewedCommand('last-episode-viewed',$eventDispatcher));
 
 $application->run();
